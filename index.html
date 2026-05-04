@@ -30,12 +30,15 @@
       padding: 80px 48px;
     }
 
-    .foil-content {
+    /* Desktop: left column holds text + swatches */
+    .foil-left {
       flex: 1;
       max-width: 580px;
+      display: flex;
+      flex-direction: column;
     }
 
-    .foil-content h2 {
+    .foil-text h2 {
       font-family: 'Archivo', sans-serif;
       font-size: 40px;
       font-weight: 700;
@@ -43,7 +46,7 @@
       margin-bottom: 28px;
     }
 
-    .foil-content p {
+    .foil-text p {
       font-size: 15px;
       line-height: 1.7;
       color: #555;
@@ -140,18 +143,50 @@
     .swatch-27 .swatch-box { background-color: #4a2f24; }
 
     @media (max-width: 860px) {
+      /* foil-section becomes a flat flex column,
+         foil-left dissolves so its children can reorder freely */
       .foil-section {
         flex-direction: column;
-        padding: 48px 24px;
+        padding: 40px 20px;
+        gap: 24px;
       }
 
-      .foil-image-wrap {
-        width: 100%;
-        max-width: 420px;
+      .foil-left {
+        display: contents;
       }
 
-      .foil-content {
-        max-width: 100%;
+      .foil-text  { order: 1; }
+      .foil-image-wrap { order: 2; width: 100%; }
+      .foil-swatches  { order: 3; width: 100%; }
+
+      .foil-text h2 {
+        font-size: 28px;
+      }
+
+      .foil-text p {
+        margin-bottom: 0;
+      }
+
+      .swatches {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-bottom: 28px;
+      }
+
+      .swatch-box {
+        width: 60px;
+        height: 60px;
+      }
+
+      .swatch-label {
+        font-size: 10px;
+        text-align: center;
+      }
+
+      .explore-btn {
+        display: block;
+        text-align: center;
       }
     }
   </style>
@@ -159,35 +194,39 @@
 <body>
 
   <section class="foil-section">
-    <div class="foil-content">
-      <h2>Foil range</h2>
-      <p>
-        Explore a wide range of decorative foils for window profiles we offer, including
-        natural wood structures, contemporary solid colors, and elegant metallic finishes.
-        Carefully selected for both visual appeal and durability, these foils ensure long-lasting
-        quality while allowing complete design flexibility.
-      </p>
-
-      <div class="swatches">
-        <div class="swatch swatch-lm active" data-image="https://pub-53ec5a92df0e4f3da67da7c1855c4aec.r2.dev/foils/Lichtgrau.png" onclick="selectSwatch(this)">
-          <div class="swatch-box"></div>
-          <span class="swatch-label">Lichtgrau (LM)</span>
-        </div>
-        <div class="swatch swatch-tj" data-image="https://pub-53ec5a92df0e4f3da67da7c1855c4aec.r2.dev/foils/Tannengr%C3%BCn.png" onclick="selectSwatch(this)">
-          <div class="swatch-box"></div>
-          <span class="swatch-label">Tannengrün (TJ)</span>
-        </div>
-        <div class="swatch swatch-wx" data-image="https://pub-53ec5a92df0e4f3da67da7c1855c4aec.r2.dev/foils/Wei%C3%9F.png" onclick="selectSwatch(this)">
-          <div class="swatch-box"></div>
-          <span class="swatch-label">Weiß (WX)</span>
-        </div>
-        <div class="swatch swatch-27" data-image="https://pub-53ec5a92df0e4f3da67da7c1855c4aec.r2.dev/foils/Schokobraun.png" onclick="selectSwatch(this)">
-          <div class="swatch-box"></div>
-          <span class="swatch-label">Schokobraun (27)</span>
-        </div>
+    <div class="foil-left">
+      <div class="foil-text">
+        <h2>Foil range</h2>
+        <p>
+          Explore a wide range of decorative foils for window profiles we offer, including
+          natural wood structures, contemporary solid colors, and elegant metallic finishes.
+          Carefully selected for both visual appeal and durability, these foils ensure long-lasting
+          quality while allowing complete design flexibility.
+        </p>
       </div>
 
-      <a href="#" class="explore-btn">Explore full collection</a>
+      <div class="foil-swatches">
+        <div class="swatches">
+          <div class="swatch swatch-lm active" data-image="https://pub-53ec5a92df0e4f3da67da7c1855c4aec.r2.dev/foils/Lichtgrau.png" onclick="selectSwatch(this)">
+            <div class="swatch-box"></div>
+            <span class="swatch-label">Lichtgrau (LM)</span>
+          </div>
+          <div class="swatch swatch-tj" data-image="https://pub-53ec5a92df0e4f3da67da7c1855c4aec.r2.dev/foils/Tannengr%C3%BCn.png" onclick="selectSwatch(this)">
+            <div class="swatch-box"></div>
+            <span class="swatch-label">Tannengrün (TJ)</span>
+          </div>
+          <div class="swatch swatch-wx" data-image="https://pub-53ec5a92df0e4f3da67da7c1855c4aec.r2.dev/foils/Wei%C3%9F.png" onclick="selectSwatch(this)">
+            <div class="swatch-box"></div>
+            <span class="swatch-label">Weiß (WX)</span>
+          </div>
+          <div class="swatch swatch-27" data-image="https://pub-53ec5a92df0e4f3da67da7c1855c4aec.r2.dev/foils/Schokobraun.png" onclick="selectSwatch(this)">
+            <div class="swatch-box"></div>
+            <span class="swatch-label">Schokobraun (27)</span>
+          </div>
+        </div>
+
+        <a href="#" class="explore-btn">Explore full collection</a>
+      </div>
     </div>
 
     <div class="foil-image-wrap">
