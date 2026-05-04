@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foil Range</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+    }
+
+    .foil-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 48px;
+    }
+
+    .foil-content {
+      flex: 1;
+      max-width: 580px;
+    }
+
+    .foil-content h2 {
+      font-family: 'Archivo', sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 28px;
+    }
+
+    .foil-content p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #555;
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+
+    .swatches {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .swatch-box {
+      width: 100px;
+      height: 100px;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .swatch.active .swatch-box {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .swatch-label {
+      font-size: 13px;
+      color: #555;
+      font-weight: 400;
+      transition: font-weight 0.15s, color 0.15s;
+    }
+
+    .swatch.active .swatch-label {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .explore-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border: 1.5px solid #1a1a1a;
+      border-radius: 6px;
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a1a1a;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+
+    .explore-btn:hover {
+      background: #1a1a1a;
+      color: #fff;
+    }
+
+    .foil-image-wrap {
+      flex: 0 0 auto;
+      width: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .foil-image-wrap img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      transition: opacity 0.3s ease;
+    }
+
+    .foil-image-wrap img.fade {
+      opacity: 0;
+    }
+
+    /* Fallback color fills shown when image is missing */
+    .swatch-lm .swatch-box { background-color: #d9e0e8; }
+    .swatch-tj .swatch-box { background-color: #2d4a35; }
+    .swatch-wx .swatch-box { background-color: #f0ece3; }
+    .swatch-27 .swatch-box { background-color: #4a2f24; }
+
+    @media (max-width: 860px) {
+      .foil-section {
+        flex-direction: column;
+        padding: 48px 24px;
+      }
+
+      .foil-image-wrap {
+        width: 100%;
+        max-width: 420px;
+      }
+
+      .foil-content {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="foil-section">
+    <div class="foil-content">
+      <h2>Foil range</h2>
+      <p>
+        Explore a wide range of decorative foils for window profiles we offer, including
+        natural wood structures, contemporary solid colors, and elegant metallic finishes.
+        Carefully selected for both visual appeal and durability, these foils ensure long-lasting
+        quality while allowing complete design flexibility.
+      </p>
+
+      <div class="swatches">
+        <div class="swatch swatch-lm active" data-image="images/lichtgrau.jpg" onclick="selectSwatch(this)">
+          <div class="swatch-box"></div>
+          <span class="swatch-label">Lichtgrau (LM)</span>
+        </div>
+        <div class="swatch swatch-tj" data-image="images/tannengruen.jpg" onclick="selectSwatch(this)">
+          <div class="swatch-box"></div>
+          <span class="swatch-label">Tannengrün (TJ)</span>
+        </div>
+        <div class="swatch swatch-wx" data-image="images/weiss.jpg" onclick="selectSwatch(this)">
+          <div class="swatch-box"></div>
+          <span class="swatch-label">Weiß (WX)</span>
+        </div>
+        <div class="swatch swatch-27" data-image="images/schokobraun.jpg" onclick="selectSwatch(this)">
+          <div class="swatch-box"></div>
+          <span class="swatch-label">Schokobraun (27)</span>
+        </div>
+      </div>
+
+      <a href="#" class="explore-btn">Explore full collection</a>
+    </div>
+
+    <div class="foil-image-wrap">
+      <img id="foil-img" src="images/lichtgrau.jpg" alt="Lichtgrau (LM)" />
+    </div>
+  </section>
+
+  <script>
+    function selectSwatch(el) {
+      document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+      el.classList.add('active');
+
+      const img = document.getElementById('foil-img');
+      const newSrc = el.dataset.image;
+      const newAlt = el.querySelector('.swatch-label').textContent;
+
+      img.classList.add('fade');
+      setTimeout(() => {
+        img.src = newSrc;
+        img.alt = newAlt;
+        img.classList.remove('fade');
+      }, 200);
+    }
+  </script>
+
+</body>
+</html>
